@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Blazor.SassCompile</id>
+    <version>1.4.0</version>
+    <title>Delegate Sass Builder</title>
+    <summary>Add auto build for .sass/.scss files</summary>
+    <authors>Søren Laurits Nielsen (sln@delegate.dk)</authors>
+    <owners>Søren Laurits Nielsen (sln@delegate.dk)</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/delegateas/Delegate.SassBuilder</projectUrl>
+    <icon>images\icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Configures a project to automatically compile all SASS/SCSS files to css during build. No manual setup required and no dependencies are added to your project</description>
+    <releaseNotes>Notice: Includes a compiled version of sassc-win </releaseNotes>
+    <copyright>Copyright Delegate A/S 2015</copyright>
+    <tags>Sass Scss Build Delegate MSBuild VisualStudio</tags>
+  </metadata>
+</package>

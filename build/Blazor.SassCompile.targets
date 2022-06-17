@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Note: Config and XML filenames should not contain a . character.  AppSettings.config = ok, Configuration.AppSettings.Config = bad -->
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SassExe Condition=" '$(SassExe)'=='' ">$(MSBuildThisFileDirectory)..\dart-sass\sass.bat</SassExe>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<SassFiles Include="$(MSBuildProjectDirectory)\wwwroot\css\*.scss" Condition="!($([System.String]::Copy(%(Filename)).StartsWith('_')))" />
+		<SassFiles Include="$(MSBuildProjectDirectory)\**\*.razor.scss" Condition="!($([System.String]::Copy(%(Filename)).StartsWith('_')))" />
+	</ItemGroup>
+
+  <Target Name="CompileSass" BeforeTargets="BeforeBuild" Inputs="@(SassFiles)" Outputs="@(SassFiles->'%(relativedir)%(Filename).css')">
+		<Exec Command="npx gulp sass-compile --files @(SassFiles) --outdir %(SassFiles.relativedir)" IgnoreExitCode="true" />
+		<Message Text="SASS compile completed" Importance="low"></Message>
+	</Target>
+
+	<Target Name="CleanSass" AfterTargets="AfterClean">
+		<Delete Files="@(SassFiles->'%(relativedir)%(Filename).css')" ContinueOnError="true" />
+	</Target>
+</Project>
